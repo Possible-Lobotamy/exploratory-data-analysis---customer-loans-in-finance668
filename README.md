@@ -1,5 +1,8 @@
 AIcore - Finance Loan Project 
 
+What is the aim of this project?
+
+
 Contents:
 Milestone 1:
 Milestone 2:
@@ -21,3 +24,7 @@ Then using the loaded credentials, as server connection inputs, an engine to con
 Another method in the class, accessing the desired table within the db was added. 
 Instance of class is intialized and tested using config_path as parameter, checking to see if enging conected and data extracted.
 Refinement and error handling performed. 
+
+Pushed to Git. 
+
+Columns and thier meanings from the 'loan_payments' database are to be familiarized with. 
