@@ -28,3 +28,5 @@ Refinement and error handling performed.
 Pushed to Git. 
 
 Columns and thier meanings from the 'loan_payments' database are to be familiarized with. 
+
+Code refined and made more robust FROM * removed, and all the column names of the loan_payments df. 
