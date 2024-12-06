@@ -1,6 +1,7 @@
 import pandas as pd
 import yaml
 from sqlalchemy import create_engine
+import os
 
 class RDSDatabaseConnector:
     def __init__(self, config_path, query):
@@ -33,26 +34,78 @@ class RDSDatabaseConnector:
             return df
         except Exception as e:
             raise RuntimeError(f"Failed to fetch data: {e}")
-
+        
+    def save_data_to_csv(self, df, file_path):
+        try:
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)  # Ensure directory exists
+            df.to_csv(file_path, index=False)
+            print(f"Data saved successfully to {file_path}")
+        except Exception as e:
+            raise RuntimeError(f"Failed to save data to CSV: {e}")
 
 if __name__ == "__main__":
     config_path = "/Users/max/coding_resources/finance_loan_project/flp.gitignore/credentials.yaml"
-
-    query = "SELECT * FROM loan_payments"
+    query = """
+        SELECT
+            id,
+            member_id,
+            loan_amount,
+            funded_amount,
+            funded_amount_inv,
+            term,
+            int_rate,
+            instalment,
+            grade,
+            sub_grade,
+            employment_length,
+            home_ownership,
+            annual_inc,
+            verification_status,
+            issue_date,
+            loan_status,
+            payment_plan,
+            purpose,
+            dti,
+            delinq_2yrs,
+            earliest_credit_line,
+            inq_last_6mths,
+            mths_since_last_delinq,
+            mths_since_last_record,
+            open_accounts,
+            total_accounts,
+            out_prncp,
+            out_prncp_inv,
+            total_payment,
+            total_payment_inv,
+            total_rec_prncp,
+            total_rec_int,
+            total_rec_late_fee,
+            recoveries,
+            collection_recovery_fee,
+            last_payment_date,
+            last_payment_amount,
+            next_payment_date,
+            last_credit_pull_date,
+            collections_12_mths_ex_med,
+            mths_since_last_major_derog,
+            policy_code,
+            application_type
+        FROM
+            loan_payments
+    """
 
     connector = RDSDatabaseConnector(config_path, query)
 
     try:
-       
         engine = connector.initialize_engine()
         print("Database engine initialized successfully.")
 
-        data_df = connector.fetch_data(engine)
+        flp_df = connector.fetch_data(engine)
         print("Data fetched successfully:")
-        print(data_df)
+        print(flp_df)
 
         csv_file_path = "/Users/max/coding_resources/finance_loan_project/flp_db/loan_payments.csv"
-        connector.save_data_to_csv(data_df, csv_file_path)
+        connector.save_data_to_csv(flp_df, csv_file_path)
 
     except Exception as e:
         print(f"Error: {e}")
