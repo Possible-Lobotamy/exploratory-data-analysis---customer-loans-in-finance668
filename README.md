@@ -7,9 +7,14 @@ Then write code in python to analyze and vizualize the data and draw summary con
 
 
 Contents:
-Milestone 1:
-Milestone 2:
-Milestone 3:
+Milestone 1: line 20 
+
+Milestone 2: line 24
+
+Milestone 3: line 36
+Task 1: line 41 
+task2: line 50
+
 Milestone 4:
 
 ---------------------------------------------------------------
