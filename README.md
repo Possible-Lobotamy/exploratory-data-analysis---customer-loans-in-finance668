@@ -7,6 +7,7 @@ Then write code in python to analyze and vizualize the data and draw summary con
 
 
 Contents:
+
 Milestone 1: line 20 
 
 Milestone 2: line 24
